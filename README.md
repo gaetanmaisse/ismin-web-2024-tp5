@@ -7,7 +7,7 @@ Course followed by students of Mines St Etienne, ISMIN - M2 Computer Science.
 [![TypeScript](https://badges.frapsoft.com/typescript/love/typescript.png?v=101)](https://github.com/ellerbrock/typescript-badges/)
 [![Mines St Etienne](./logo.png)](https://www.mines-stetienne.fr/)
 
-# TP4: Deploy a NestJS API to Clever Cloud
+# TP5: Deploy a NestJS API to Clever Cloud
 
 ## 📝 Goal
 
@@ -20,7 +20,7 @@ No! Using a French 🇫🇷 IT automation company: [Clever Cloud](https://www.cl
 
 ### Step 1: ♻️ Prepare the sources
 
-Copy/paste `src` and `package.json` of TP3 in this project. Run `npm install` to fetch the dependencies.
+Copy/paste `src` and `package.json` of TP4 in this project. Run `npm install` to fetch the dependencies.
 
 ### Step 2: ☁️ Prepare Clever Cloud
 
@@ -28,7 +28,7 @@ Login to Clever Cloud and create a Node.JS application with option detailed in c
 
 ### Step 3: 🏗 Adapt the app to make it buildable and runnable on Clever Cloud  
 
- - Make the port used by the app configurable using an environment variable: `PORT=8080 npm run start` should start app on port 8080
+ - Make the port used by the app configurable using an environment variable: `PORT=8080 npm run start` (on Windows: `set PORT=8080 && npm run start`) should start app on port 8080
  - Rework/add NPM scripts in `package.json`:
    - `install`: should build the app
    - `start`: should start the built app  

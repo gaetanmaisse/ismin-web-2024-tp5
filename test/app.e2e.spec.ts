@@ -1,15 +1,15 @@
+import type { INestApplication } from '@nestjs/common';
+import { Test, type TestingModule } from '@nestjs/testing';
 import * as request from 'supertest';
-import { Test } from '@nestjs/testing';
-import { INestApplication } from '@nestjs/common';
-import supertest from 'supertest';
+import type supertest from 'supertest';
 import { BookModule } from '../src/book.module';
 
 describe('Books API', () => {
   let app: INestApplication;
-  let httpRequester: supertest.SuperTest<supertest.Test>;
+  let httpRequester: supertest.Agent;
 
   beforeEach(async () => {
-    const moduleRef = await Test.createTestingModule({
+    const moduleRef: TestingModule = await Test.createTestingModule({
       imports: [BookModule],
     }).compile();
 
@@ -19,16 +19,17 @@ describe('Books API', () => {
     httpRequester = request(app.getHttpServer());
   });
 
-  it(`/GET books`, async () => {
+  it('GET /books', async () => {
     const response = await httpRequester.get('/books').expect(200);
 
     expect(response.body).toEqual(expect.any(Array));
   });
 
-  it(`/POST books`, async () => {
+  it('POST /books', async () => {
     const response = await httpRequester
       .post('/books')
       .send({
+        isbn: '978-2081510436',
         title: 'Candide',
         author: 'Voltaire',
         date: '1759',
@@ -36,43 +37,51 @@ describe('Books API', () => {
       .expect(201);
 
     expect(response.body).toEqual({
+      isbn: '978-2081510436',
       title: 'Candide',
       author: 'Voltaire',
       date: '1759',
     });
   });
 
-  it(`/GET books/:title`, async () => {
+  it('GET /books/:isbn', async () => {
     // First prepare the data by adding a book
     await httpRequester.post('/books').send({
+      isbn: '978-2081510436',
       title: 'Candide',
       author: 'Voltaire',
       date: '1759',
     });
 
     // Then get the previously stored book
-    const response = await httpRequester.get('/books/Candide').expect(200);
+    const response = await httpRequester
+      .get('/books/978-2081510436')
+      .expect(200);
 
-    expect(response.body).toMatchObject({
+    expect(response.body).toEqual({
+      isbn: '978-2081510436',
       title: 'Candide',
       author: 'Voltaire',
       date: '1759',
     });
   });
 
-  it(`/GET books by author`, async () => {
+  it('GET /books by author', async () => {
     // First prepare the data by adding some books
     await httpRequester.post('/books').send({
+      isbn: '978-2081510436',
       title: 'Candide',
       author: 'Voltaire',
       date: '1759',
     });
     await httpRequester.post('/books').send({
+      isbn: '978-2081510438',
       title: 'Zadig',
       author: 'Voltaire',
       date: '1748',
     });
     await httpRequester.post('/books').send({
+      isbn: '978-2081510437',
       title: 'La Cantatrice chauve',
       author: 'Ionesco',
       date: '1950',
@@ -84,13 +93,15 @@ describe('Books API', () => {
       .query({ author: 'Voltaire' })
       .expect(200);
 
-    expect(response.body).toMatchObject([
+    expect(response.body).toEqual([
       {
+        isbn: '978-2081510436',
         title: 'Candide',
         author: 'Voltaire',
         date: '1759',
       },
       {
+        isbn: '978-2081510438',
         title: 'Zadig',
         author: 'Voltaire',
         date: '1748',
@@ -98,18 +109,19 @@ describe('Books API', () => {
     ]);
   });
 
-  it(`/DELETE books/:title`, async () => {
+  it('DELETE /books/:isbn', async () => {
     // First prepare the data by adding a book
     await httpRequester.post('/books').send({
+      isbn: '978-2081510436',
       title: 'Candide',
       author: 'Voltaire',
       date: '1759',
     });
 
     // Delete the book
-    await httpRequester.delete('/books/Candide').expect(200);
+    await httpRequester.delete('/books/978-2081510436').expect(200);
 
-    // Finally check the book was successfully deleted
+    // Finally, check the book was successfully deleted
     const response = await httpRequester.get('/books');
 
     expect(response.body).toEqual([]);

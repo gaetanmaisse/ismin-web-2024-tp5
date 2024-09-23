@@ -1,0 +1,68 @@
+[
+  {
+    "title": "The Lord of the Rings",
+    "author": "J. R. R. Tolkien",
+    "date": "1955",
+    "isbn": "978-0618640157"
+  },
+  {
+    "title": "The Hobbit",
+    "author": "J. R. R. Tolkien",
+    "date": "1937",
+    "isbn": "978-0618260300"
+  },
+  {
+    "title": "The Fellowship of the Ring",
+    "author": "J. R. R. Tolkien",
+    "date": "1954",
+    "isbn": "978-0618346257"
+  },
+  {
+    "title": "The Two Towers",
+    "author": "J. R. R. Tolkien",
+    "date": "1954",
+    "isbn": "978-0618346234"
+  },
+  {
+    "title": "A Game of Thrones",
+    "author": "George R. R. Martin",
+    "date": "1996",
+    "isbn": "978-0345391831"
+  },
+  {
+    "title": "A Clash of Kings",
+    "author": "George R. R. Martin",
+    "date": "1998",
+    "isbn": "978-0345391839"
+  },
+  {
+    "title": "The Hedge Knight",
+    "author": "George R. R. Martin",
+    "date": "1999",
+    "isbn": "978-0345391838"
+  },
+  {
+    "title": "The Princess and the Queen",
+    "author": "George R. R. Martin",
+    "date": "1997",
+    "isbn": "978-0345391833"
+  },
+  {
+    "title": "The Last Story",
+    "author": "George R. R. Martin",
+    "date": "1998",
+    "isbn": "978-0345391832"
+  },
+  {
+    "title": "The Two Towers",
+    "author": "J. R. R. Tolkien",
+    "date": "1954",
+    "isbn": "978-0618346257"
+  },
+  {
+    "title": "The Return of the King",
+    "author": "J. R. R. Tolkien",
+    "date": "1955",
+    "isbn": "978-0618640157"
+  }
+]
